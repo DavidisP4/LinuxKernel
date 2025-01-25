@@ -25,7 +25,7 @@ git pull origin "$BASE_BRANCH"
 NUM_PRS=100
 declare -a PR_NUMBERS  # Array to store pull request numbers
 
-for i in $(seq 1 $NUM_PRS); do
+for i in {101..201}; do
   BRANCH_NAME="add-char-$i"
   echo "-------------------------"
   echo "Creating branch: $BRANCH_NAME"
@@ -71,11 +71,11 @@ done
 
 echo "-------------------------"
 echo "Now merging all created PRs..."
-for PR_NUMBER in "${PR_NUMBERS[@]}"; do
+for PR_NUMBER in {101..201}; do
   echo "Merging PR #$PR_NUMBER..."
   
   # Attempt to merge using a merge commit (remove --auto if branch protections block it)
-  gh pr merge "$PR_NUMBER" --merge --auto
+  gh pr merge "$PR_NUMBER" --merge
   
   if [ $? -eq 0 ]; then
     echo "PR #$PR_NUMBER merged successfully."
