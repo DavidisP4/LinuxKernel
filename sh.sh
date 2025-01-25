@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-#-------------------------
-# 0) PRE-FLIGHT CHECKS
-#-------------------------
-
 # If there are any uncommitted changes, commit them so we don't get "no commits" errors
 UNCOMMITTED_CHANGES=$(git status --porcelain)
 if [ -n "$UNCOMMITTED_CHANGES" ]; then
@@ -24,8 +20,7 @@ git pull origin "$BASE_BRANCH"
 
 NUM_PRS=100
 declare -a PR_NUMBERS  # Array to store pull request numbers
-
-for i in {101..201}; do
+for i in {150..300}; do
   BRANCH_NAME="add-char-$i"
   echo "-------------------------"
   echo "Creating branch: $BRANCH_NAME"
@@ -71,7 +66,7 @@ done
 
 echo "-------------------------"
 echo "Now merging all created PRs..."
-for PR_NUMBER in {101..201}; do
+for PR_NUMBER in {150..300}; do
   echo "Merging PR #$PR_NUMBER..."
   
   # Attempt to merge using a merge commit (remove --auto if branch protections block it)
